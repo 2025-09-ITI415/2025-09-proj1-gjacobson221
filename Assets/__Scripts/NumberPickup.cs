@@ -3,31 +3,27 @@ using UnityEngine;
 public class NumberPickup : MonoBehaviour
 {
     public int value;
-    private TextMesh textMesh;
+    public TextMesh numberText;
 
     void Start()
     {
-        textMesh = GetComponent<TextMesh>();
-        AssignRandomValue();
+        ResetNumber();
     }
 
-    public void AssignRandomValue()
+    // Assigns a new random number
+    public void ResetNumber()
     {
-        // Random number between 1 and 9
         value = Random.Range(1, 10);
+        if (numberText != null)
+            numberText.text = value.ToString();
 
-        if (textMesh != null)
-        {
-            textMesh.text = value.ToString();
-        }
+        gameObject.SetActive(true); // always visible
     }
 
-    void LateUpdate()
+    // Called when player collects it
+    public void Collect()
     {
-        // Keep number facing the camera
-        if (Camera.main != null)
-        {
-            transform.rotation = Camera.main.transform.rotation;
-        }
+        ResetNumber(); // immediately assign new number instead of hiding
     }
 }
+
