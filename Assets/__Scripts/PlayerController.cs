@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         // ..and if the game object we intersect has the tag 'Pick Up' assigned to it..
-        if (other.gameObject.CompareTag("Pick Up"))
+        if (other.gameObject.CompareTag("PickUp"))
         {
             // Make the other game object (the pick up) inactive, to make it disappear
             other.gameObject.SetActive(false);
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         countText.text = "Count: " + count.ToString();
 
         // Check if our 'count' is equal to or exceeded 12
-        if (count >= 12)
+        if (count >= 8)
         {
             // Set the text value of our 'winText'
             winText.text = "You Win!";
