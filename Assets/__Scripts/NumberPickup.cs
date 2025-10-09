@@ -14,9 +14,11 @@ public class NumberPickup : MonoBehaviour
     public void ResetNumber()
     {
         value = Random.Range(1, 10);
-        if (numberText != null)
+        if (numberText != null){
             numberText.text = value.ToString();
-
+            gameObject.SetActive(false);
+            yeild return new WaitForSeconds(3f);
+        }
         gameObject.SetActive(true); // always visible
     }
 
