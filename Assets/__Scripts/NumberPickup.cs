@@ -20,24 +20,40 @@ public class NumberPickup : MonoBehaviour
     public void ResetNumber()
     {
         value = Random.Range(1, 10);
+
         if (numberText != null)
             numberText.text = value.ToString();
 
-        numberText.gameObject.SetActive(true);
-        if (col != null) col.enabled = true;
+        if (numberText != null)
+            numberText.gameObject.SetActive(true);
+
+        if (col != null)
+            col.enabled = true;
     }
 
     public void Collect()
     {
-        numberText.gameObject.SetActive(false);
-        if (col != null) col.enabled = false;
+        // hide the number visually and disable collider
+        if (numberText != null)
+            numberText.gameObject.SetActive(false);
+
+        if (col != null)
+            col.enabled = false;
+
+        // start coroutine *before* disabling the object
         StartCoroutine(RespawnAfterDelay(3f));
     }
 
     private IEnumerator RespawnAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+
         ResetNumber();
+        if (numberText != null)
+            numberText.gameObject.SetActive(true);
+        if (col != null)
+            col.enabled = true;
     }
+
 }
 
